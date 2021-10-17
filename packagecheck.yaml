@@ -1,0 +1,20 @@
+---
+- name: checking package is present or not present
+  hosts: web_servers
+  become: yes
+    
+  tasks:
+    - name: "Check if PACKAGE is installed"
+      package_facts:
+        manager: "auto"
+    - name: "Package result"
+      debug:
+         msg: "Package is installed"
+# call this {{package}} variable as extra variable        
+      when: "'{{package}}' in ansible_facts.packages"
+      
+      
+    - name: "Package result"
+      debug:
+         msg: "Package NOT is nat installed"
+      when: "'{{package}}' not in ansible_facts.packages"
