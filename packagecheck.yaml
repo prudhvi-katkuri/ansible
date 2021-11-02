@@ -16,5 +16,5 @@
       
     - name: "Package result"
       debug:
-         msg: "Package NOT is nat installed"
+         msg: "Package is not installed"
       when: "'{{package}}' not in ansible_facts.packages"
